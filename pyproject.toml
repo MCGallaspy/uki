@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uki"
+version = "0.0.1"
+dependencies = [
+    "dearpygui",
+    "pandas",
+    "torch",
+    "matplotlib",
+]
