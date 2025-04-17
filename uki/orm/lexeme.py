@@ -18,3 +18,6 @@ class Lexeme(UkiʔBase):
     
     surface_forms: Mapped[Set["SurfaceForm"]] = relationship(back_populates="lexeme")
     senses: Mapped[Set["Sense"]] = relationship(back_populates="lexeme")
+    
+    def __repr__(self):
+        return f"Lexeme(id={self.id}, lemma='{self.lemma}', morpheme_type='{self.morpheme_type}')"

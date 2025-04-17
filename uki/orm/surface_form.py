@@ -19,3 +19,6 @@ class SurfaceForm(UkiʔBase):
     form: Mapped[str] = mapped_column(String(256))
     lexeme_id: Mapped[int] = mapped_column(ForeignKey("lexeme.id"))
     lexeme: Mapped[Lexeme] = relationship(back_populates="surface_forms")
+
+    def __repr__(self):
+        return f"SurfaceForm(id={self.id}, form='{self.form}', lexeme='{self.lexeme}')"
