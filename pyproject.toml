@@ -10,4 +10,5 @@ dependencies = [
     "pandas",
     "torch",
     "matplotlib",
+    "SQLAlchemy",
 ]
