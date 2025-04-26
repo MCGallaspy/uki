@@ -3,7 +3,10 @@ import dearpygui.dearpygui as dpg
 from sqlalchemy.engine import Engine
 
 from uki.gui.application_state import ApplicationState
-from uki.gui.application_controller import initialize_database_engine
+from uki.gui.application_controller import (
+    initialize_database_engine,
+    load_lift_data,
+)
 from uki.gui.views.import_from_lift import import_from_lift
 
 
@@ -20,6 +23,7 @@ def main():
                 dpg.add_menu_item(
                     label="Import from LIFT",
                     callback=import_from_lift,
+                    user_data=(APPLICATION_STATE, load_lift_data),
                 )
 
     dpg.create_viewport(title='Ukiʔ', width=800, height=600)
