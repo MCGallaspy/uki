@@ -1,3 +1,8 @@
+from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
+from sqlalchemy.pool import StaticPool, SingletonThreadPool
+
+from uki.orm.base import UkiʔBase
 
 
 class ApplicationState:
@@ -13,3 +18,10 @@ class ApplicationState:
                          a database connection.
         """
         self.sql_alchemy_url = sql_alchemy_url
+        engine = create_engine(sql_alchemy_url, echo=True)
+        UkiʔBase.metadata.create_all(engine)
+        self._engine = engine
+    
+    @property
+    def engine(self):
+        return self._engine
