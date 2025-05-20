@@ -17,6 +17,15 @@ def toggle_show_lexicon(sender, app_data, user_data):
 
 def make_lexicon(app_state: ApplicationState, container_tag: str):
     
-    with Session(app_state.engine) as session:
+    with Session(app_state.engine) as session, dpg.table(header_row=True, parent=container_tag) as table:
+        dpg.add_table_column(label="Lexeme")
+        dpg.add_table_column(label="Senses")
+        dpg.add_table_column(label="Surface Forms")
         for lexeme in session.query(Lexeme):
-            print(lexeme)
+            with dpg.table_row():
+                with dpg.table_cell():
+                    dpg.add_text(lexeme.lemma)
+                with dpg.table_cell():
+                    dpg.add_text("; ".join([s.gloss for s in lexeme.senses]))
+                with dpg.table_cell():
+                    dpg.add_text("; ".join([s.form for s in lexeme.surface_forms]))
