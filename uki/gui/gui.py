@@ -12,6 +12,12 @@ def main():
     )
     dpg.create_context()
 
+    with dpg.font_registry():
+        with dpg.font("fonts/Tinos/Tinos-Regular.ttf", 16) as font1:
+            dpg.add_font_chars(list(range(0x0001, 0xFFFF)))
+            dpg.bind_font(font1)
+
+
     with dpg.window(
             label="Lexicon",
             tag="lexicon-window",
